@@ -1,0 +1,59 @@
+{
+    "name": "FumoMod",
+    "version": "1.0.0",
+    "styleFileList": [
+        "fumo.css"
+    ],
+    "scriptFileList": [
+        "localization/zh-CN.js",
+        "localization/en-US.js",
+        "fumomodel.js",
+        "fumorender.js"
+    ],
+    "scriptFileList_earlyload": [
+        "earlyload/readData.js"
+    ],
+    "scriptFileList_inject_early": [],
+    "scriptFileList_preload": [],
+    "tweeFileList": [
+        "util.twee"
+    ],
+    "imgFileList": [],
+    "additionFile": [],
+    "additionDir": [
+        "fumoimg/"
+    ],
+    "addonPlugin": [{
+        "modName": "TweeReplacer",
+        "addonName": "TweeReplacerAddon",
+        "modVersion": "^1.6.0",
+        "params": [{
+            "passage": "StoryCaption",
+            "findString": "<div id=\"sidebar-img-container\">",
+            "replace": "<<initFumoOptions>><div id=\"sidebar-img-container\"><div id=\"fumo-img\"><<fumoCanvas>></div>"
+        }, {
+            "passage": "Widgets Shop",
+            "findString": "<<replace \"#img\">><<canvasimg \"mainCanvas\">><</replace>>",
+            "replace": "<<replace \"#img\">><<canvasimg \"mainCanvas\">><</replace>><<if elementExists(\"#fumo-img\")>><<replace \"#fumo-img\">><<fumoCanvas>><</replace>><</if>>"
+        }, {
+            "passage": "Options Overlay",
+            "findString": "<br><br>*/\n\t<</if>>\n\t<div class=\"settingsGrid\">",
+            "replace": "<br><br>*/\n\t<</if>>\n\t<div id=\"fumoSettingsContainer\"><<fumoSettingsPanel>></div>\n\t<div class=\"settingsGrid\">"
+        }]
+    }, {
+        "modName": "ImageLoaderHook",
+        "addonName": "ImageLoaderAddon",
+        "modVersion": "^2.16.0",
+        "params": []
+    }],
+    "dependenceInfo": [{
+        "modName": "TweeReplacer",
+        "version": "^1.6.0"
+    }, {
+        "modName": "ModLoader",
+        "version": "^2.26.9"
+    }, {
+        "modName": "ImageLoaderHook",
+        "version": "^2.16.0"
+    }]
+}

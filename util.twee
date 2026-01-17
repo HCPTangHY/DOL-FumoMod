@@ -1,0 +1,30 @@
+:: FumoMod Widgets [widget]
+
+<<widget "fumoCanvas">>
+	<<if $fumoOptions is undefined>><<set $fumoOptions to { enabled: true, offsetX: 0 }>><</if>>
+	<<if $fumoOptions.enabled>>
+		<<set _foff to $fumoOptions.offsetX or 0>>
+		<div class="fumoCanvas" @style="'left:calc(99px + ' + _foff + 'px)'">
+			<<selectmodel "fumo">>
+			<<run FumoHelper.applyToModelOptions(_modeloptions)>>
+			<<rendermodel _args[0]>>
+		</div>
+	<</if>>
+<</widget>>
+
+<<widget "fumoCanvasCustom">>
+	<<rendermodel _args[0]>>
+<</widget>>
+
+<<widget "initFumoOptions">>
+	<<if $fumoOptions is undefined>><<set $fumoOptions to { enabled: true, offsetX: 0 }>><</if>>
+<</widget>>
+
+<<widget "fumoSettingsPanel">>
+	<<initFumoOptions>>
+	<div class="settingsHeader options"><span class="gold"><<= window.L("Fumo.Settings.Title")>></span></div>
+	<div class="settingsToggleItem">
+		<<= window.L("Fumo.Settings.OffsetX")>>: <span id="fumoOffsetVal"><<= $fumoOptions.offsetX>></span>px<br>
+		<<print '<input type="range" id="fumoSlider" min="-150" max="50" value="' + $fumoOptions.offsetX + '" style="width:200px" oninput="window.fumoOffsetChange(this.value)">'>>
+	</div>
+<</widget>>

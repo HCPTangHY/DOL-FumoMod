@@ -1,0 +1,13 @@
+.fumoCanvas {
+    position: absolute;
+    z-index: 999;
+    top: 20px;
+    transform: scale(0.45);
+    left: 99px;
+}
+
+#fumo-img canvas {
+    image-rendering: auto !important;
+    image-rendering: smooth !important;
+    image-rendering: -webkit-optimize-contrast !important;
+}
